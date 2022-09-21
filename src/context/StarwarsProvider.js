@@ -5,6 +5,9 @@ import StarwarsContext from './StarwarsContext';
 const StarwarsProvider = ({ children }) => {
   const [planets, setPlanets] = useState([]);
   const [filterPlanets, setFilterPlanets] = useState('');
+  const [columnFilter, setColumnFilter] = useState('population');
+  const [comparisonFilter, setComparisonFilter] = useState('maior que');
+  const [valueFilter, setValueFilter] = useState('0');
 
   useEffect(() => {
     const fetchStarwarsAPI = async () => {
@@ -22,6 +25,15 @@ const StarwarsProvider = ({ children }) => {
   const planetsDescription = { planets,
     setFilterPlanets,
     filterByName: { name: filterPlanets },
+    filterByNumericValues: [{
+      column: columnFilter,
+      comparison: comparisonFilter,
+      value: valueFilter,
+    }],
+    setColumnFilter,
+    setComparisonFilter,
+    setValueFilter,
+    setPlanets,
   };
 
   return (

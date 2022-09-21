@@ -3,10 +3,12 @@ import StarwarsContext from '../context/StarwarsContext';
 import Filter from './Filter';
 
 const Table = () => {
-  const { planets, filterByName: { name } } = useContext(StarwarsContext);
+  const { planets, filterByName: { name },
+    filterByNumericValues: [{ column, comparison, value }],
+  } = useContext(StarwarsContext);
 
-  const planetsTable = planets.filter((filtered) => filtered.name.toLowerCase()
-    .includes(name.toLowerCase()))
+  const filterPlanetsByText = planets.filter((filtered) => filtered.name.toLowerCase()
+    .includes(name, column, comparison, value))
     .map((planet) => (
       <tr key={ planet.name }>
         <td>{planet.name}</td>
@@ -46,7 +48,7 @@ const Table = () => {
             <th>URL</th>
           </tr>
         </thead>
-        <tbody>{planetsTable}</tbody>
+        <tbody>{filterPlanetsByText}</tbody>
       </table>
     </div>
   );
