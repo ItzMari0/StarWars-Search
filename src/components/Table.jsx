@@ -1,12 +1,11 @@
 import React, { useContext } from 'react';
 import StarwarsContext from '../context/StarwarsContext';
+import Filter from './Filter';
 
 const Table = () => {
-  const { planets,
-    filterByName: { name },
-    setFilterPlanets } = useContext(StarwarsContext);
+  const { planets, filterByName: { name } } = useContext(StarwarsContext);
 
-  const planetsTable = planets.filter((obj) => obj.name.toLowerCase()
+  const planetsTable = planets.filter((filtered) => filtered.name.toLowerCase()
     .includes(name.toLowerCase()))
     .map((planet) => (
       <tr key={ planet.name }>
@@ -28,14 +27,7 @@ const Table = () => {
 
   return (
     <div>
-      <label htmlFor="search-input">
-        <input
-          type="text"
-          data-testid="name-filter"
-          name="name"
-          onChange={ (event) => setFilterPlanets(event.target.value) }
-        />
-      </label>
+      <Filter />
       <table>
         <thead>
           <tr>

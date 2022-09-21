@@ -20,7 +20,6 @@ const StarwarsProvider = ({ children }) => {
   }, []);
 
   const planetsDescription = { planets,
-    filterPlanets,
     setFilterPlanets,
     filterByName: { name: filterPlanets },
   };
