@@ -4,6 +4,7 @@ import StarwarsContext from './StarwarsContext';
 
 const StarwarsProvider = ({ children }) => {
   const [planets, setPlanets] = useState([]);
+  const [filterPlanets, setFilterPlanets] = useState('');
 
   useEffect(() => {
     const fetchStarwarsAPI = async () => {
@@ -18,7 +19,11 @@ const StarwarsProvider = ({ children }) => {
     fetchStarwarsAPI();
   }, []);
 
-  const planetsDescription = { planets };
+  const planetsDescription = { planets,
+    filterPlanets,
+    setFilterPlanets,
+    filterByName: { name: filterPlanets },
+  };
 
   return (
     <StarwarsContext.Provider value={ planetsDescription }>
