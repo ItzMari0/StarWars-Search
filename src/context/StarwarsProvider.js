@@ -8,6 +8,13 @@ const StarwarsProvider = ({ children }) => {
   const [columnFilter, setColumnFilter] = useState('population');
   const [comparisonFilter, setComparisonFilter] = useState('maior que');
   const [valueFilter, setValueFilter] = useState('0');
+  const [columnOptions, setColumnOptions] = useState([
+    'population',
+    'orbital_period',
+    'diameter',
+    'rotation_period',
+    'surface_water',
+  ]);
 
   useEffect(() => {
     const fetchStarwarsAPI = async () => {
@@ -34,6 +41,8 @@ const StarwarsProvider = ({ children }) => {
     setComparisonFilter,
     setValueFilter,
     setPlanets,
+    columnOptions,
+    setColumnOptions,
   };
 
   return (

@@ -3,7 +3,7 @@ import StarwarsContext from '../context/StarwarsContext';
 
 const Filter = () => {
   const { planets, setPlanets, setFilterPlanets, setColumnFilter,
-    setComparisonFilter, setValueFilter,
+    setComparisonFilter, setValueFilter, columnOptions, setColumnOptions,
     filterByNumericValues: [{ column, comparison, value }],
   } = useContext(StarwarsContext);
 
@@ -18,6 +18,10 @@ const Filter = () => {
       setPlanets(planets
         .filter((filtered) => Number(filtered[column]) === Number(value)));
     }
+    setColumnOptions((prevState) => {
+      const optionsFilter = prevState.filter((option) => option !== column);
+      return optionsFilter;
+    });
   };
 
   //    <div>
@@ -41,11 +45,9 @@ const Filter = () => {
           value={ column }
           onChange={ (event) => setColumnFilter(event.target.value) }
         >
-          <option value="population">population</option>
-          <option value="orbital_period">orbital_period</option>
-          <option value="diameter">diameter</option>
-          <option value="rotation_period">rotation_period</option>
-          <option value="surface_water">surface_water</option>
+          {columnOptions.map((option) => (
+            <option key={ option } value={ option }>{option}</option>
+          ))}
         </select>
       </label>
       <label htmlFor="select-input-two">
