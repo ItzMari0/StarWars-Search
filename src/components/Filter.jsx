@@ -8,6 +8,11 @@ const Filter = () => {
   } = useContext(StarwarsContext);
 
   const handleClick = () => {
+    setColumnOptions((prevState) => {
+      const optionsFilter = prevState.filter((option) => option !== column);
+      return optionsFilter;
+    });
+    setColumnFilter(columnOptions[1]);
     if (comparison === 'maior que') {
       setPlanets(planets
         .filter((filtered) => Number(filtered[column]) > Number(value)));
@@ -18,16 +23,7 @@ const Filter = () => {
       setPlanets(planets
         .filter((filtered) => Number(filtered[column]) === Number(value)));
     }
-    setColumnOptions((prevState) => {
-      const optionsFilter = prevState.filter((option) => option !== column);
-      return optionsFilter;
-    });
   };
-
-  //    <div>
-  //      <p>{`Planeta com ${columnFilter} ${comparisonFilter} ${valueFilter}`}</p>
-  //      <button type="button">Remover</button>
-  //    </div>
 
   return (
     <div>
