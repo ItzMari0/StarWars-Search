@@ -12,7 +12,9 @@ const Filter = () => {
       const optionsFilter = prevState.filter((option) => option !== column);
       return optionsFilter;
     });
+
     setColumnFilter(columnOptions[1]);
+
     if (comparison === 'maior que') {
       setPlanets(planets
         .filter((filtered) => Number(filtered[column]) > Number(value)));
